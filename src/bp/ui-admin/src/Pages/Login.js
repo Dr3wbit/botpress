@@ -8,10 +8,10 @@ export default class Login extends Component {
   state = {
     isLoading: true,
     isFirstTimeUse: false,
-    email: '',
+    email: 'admin',
     authStrategy: 'basic',
     authEndpoint: null,
-    password: '',
+    password: '123456',
     passwordExpired: false,
     error: null
   }

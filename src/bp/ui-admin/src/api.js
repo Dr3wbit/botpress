@@ -21,9 +21,9 @@ const createClient = (clientOptions, { toastErrors, addInterceptor }) => {
       const wrappedError = _.get(error, 'response.data')
       const errorCode = _.get(wrappedError, 'errorCode')
       if (errorCode) {
-        if (['BP_0005', 'BP_0041', 'BP_000'].includes(errorCode)) {
-          return logout()
-        }
+        //if (['BP_0005', 'BP_0041', 'BP_000'].includes(errorCode)) {
+        //  return logout()
+        //}
         return Promise.reject(wrappedError)
       } else {
         return Promise.reject(error)
@@ -75,11 +75,10 @@ export default {
   },
 
   getSecured({ token, toastErrors = true } = {}) {
-    if (!token) {
+    /* if (!token) {
       const ls = pullToken()
       token = ls && ls.token
-    }
-
+    }*/
     return createClient(
       {
         headers: {
@@ -108,7 +107,7 @@ export default {
       { toastErrors }
     )
 
-    client.interceptors.response.use(
+    /*client.interceptors.response.use(
       response => response,
       error => {
         if (error.response && (error.response.status === 401 || error.response.status === 403)) {
@@ -117,7 +116,7 @@ export default {
 
         throw error
       }
-    )
+    )*/
 
     return client
   },
